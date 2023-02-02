@@ -21,6 +21,9 @@ jobs:
       - name: Output input name
         run: echo "${{inputs.name}}"
 
+      - name: Output actor name
+        run: echo "${{triggering_actor}}"
+
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
