@@ -12,14 +12,14 @@ jobs:
   call-create-workspace:
     uses: ./.github/workflows/create-ws.yml
     with:
-      name: ${{github.event.inputs.name}}
+      name: ${{inputs.name}}
 
   run-performance-test:
     runs-on: ubuntu-latest
     needs: call-create-workspace
     steps:
       - name: Output input name
-        run: echo "${{github.event.inputs.name}}"
+        run: echo "${{inputs.name}}"
 
       - name: Dump GitHub context
         env:
@@ -37,4 +37,4 @@ jobs:
     needs: run-performance-test
     if: always()
     with:
-      name: ${{github.event.inputs.name}}
+      name: ${{inputs.name}}
