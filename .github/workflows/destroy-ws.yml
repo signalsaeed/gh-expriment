@@ -6,6 +6,12 @@ on:
       name:
         description: 'name of ws to destroy'
         required: true
+  workflow_call:
+    inputs:
+      name:
+        description: 'name of the workspace'
+        required: true
+        type: string
 
 concurrency: destroy-workspace-${{ github.event.inputs.name }}
 
