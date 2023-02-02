@@ -13,7 +13,7 @@ on:
         required: true
         type: string
 
-concurrency: destroy-workspace-${{ github.event.inputs.name }}
+concurrency: destroy-workspace-${{ inputs.name }}
 
 jobs:
   # This workflow contains a single job called "destroy"
@@ -25,7 +25,7 @@ jobs:
     steps:
       
       - name: Output github input name
-        run: echo "${{ github.event.inputs.name}}"
+        run: echo "${{ inputs.name}}"
         
       - name: Destroy workspace
         run: |
