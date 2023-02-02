@@ -12,7 +12,7 @@ jobs:
   call-create-workspace:
     uses: ./.github/workflows/create-ws.yml
     with:
-      name:${{inputs.name}}
+      name: ${{inputs.name}}
     
   run-performance-test:
     runs-on: ubuntu-latest
