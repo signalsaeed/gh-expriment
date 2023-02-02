@@ -1,0 +1,39 @@
+name: testing
+
+on:
+  workflow_dispatch:
+  
+env:
+  mickey: mouse
+  var1: 1
+
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    name: Build
+    env:
+      var2: ${{ env.var1 }}
+   
+    runs-on: windows-latest
+    
+    
+
+    steps:
+      - name: Set the value
+        id: step_one
+        run: |
+          Write-Output "color=green" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
+
+      - name: Use the value
+        id: step_two
+        run: |
+          echo "${{ env.color }}" # This will output 'yellow'
+          echo "$env:windir"
+          
+      - name: runner
+        run: |
+          echo ${{runner.temp}}
+          
+    
+      
+  
