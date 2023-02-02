@@ -5,8 +5,8 @@ on:
   workflow_dispatch:
     inputs:
       name:
-        description:'name of the test'
-        required:true
+        description: 'name of the test new environment'
+        required: true
         
 concurrency: 
   group: tests-on-pr-${{ github.head_ref }}
