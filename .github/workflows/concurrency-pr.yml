@@ -23,7 +23,7 @@ jobs:
     steps:
       
       - name: Output HeadRef
-        run: echo "${{ github.inputs.name }}"
+        run: echo "${{github.event.inputs.name}}"
         
       - name: Dump GitHub context
         env:
