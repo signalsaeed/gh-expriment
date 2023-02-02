@@ -21,10 +21,15 @@ jobs:
       - name: Output input name
         run: echo "${{github.event.inputs.name}}"
 
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+
       - name: run performance test
         run: |
           echo "running test"
-          sleep 1m
+          sleep 45s
           echo "Finish test"
 
   call-destroy-workspace:
