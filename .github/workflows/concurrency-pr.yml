@@ -8,24 +8,28 @@ on:
         description: 'name of the test new environment'
         required: true
         
-concurrency: 
-  group: tests-on-pr-${{ github.head_ref }}
-  #group: build-and-test
-  cancel-in-progress: true 
-
 jobs:
-  # This workflow contains a single job called "build"
-  build-and-test:
-    name: Build and Test On Pull Request
+  call-create-workspace:
+    uses: ./.github/workflows/create-ws.yml
+    with:
+      name:${{github.event.inputs.name}}
     
+  run-performance-test:
     runs-on: ubuntu-latest
-
     steps:
       
-      - name: Output HeadRef
+      - name: Output input name
         run: echo "${{github.event.inputs.name}}"
         
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
+      - name: run performance test
+        run: |
+          echo "running test"
+          sleep 1m
+          echo "Finish test"
+
+  call-destroy-workspace:
+    uses: ./.github/workflows/destroy-ws.yml
+    needs: run-performance-test
+    if: always()
+    with:
+      name: ${{github.event.inputs.name}}

@@ -1,0 +1,28 @@
+name: create workspace
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'name of the ws to create'
+        required: true
+
+concurrency: create-workspace-${{ github.event.inputs.name }}
+
+jobs:
+  # This workflow contains a single job called "create"
+  create-workspace:
+    name: Create Workspace
+    
+    runs-on: ubuntu-latest
+
+    steps:
+      
+      - name: Output github input name
+        run: echo "${{ github.event.inputs.name}}"
+        
+      - name: create workspace
+        run: |
+          echo "creating workspace"
+          sleep 2m
+          echo "Finish creation"

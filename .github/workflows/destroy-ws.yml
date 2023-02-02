@@ -1,0 +1,28 @@
+name: destroy workspace
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'name of ws to destroy'
+        required: true
+
+concurrency: destroy-workspace-${{ github.event.inputs.name }}
+
+jobs:
+  # This workflow contains a single job called "destroy"
+  destroy-workspace:
+    name: Destroy Workspace
+    
+    runs-on: ubuntu-latest
+
+    steps:
+      
+      - name: Output github input name
+        run: echo "${{ github.event.inputs.name}}"
+        
+      - name: Destroy workspace
+        run: |
+          echo "destroying workspace"
+          sleep 2m
+          echo "Finish Destroy"
