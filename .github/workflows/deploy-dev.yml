@@ -5,7 +5,7 @@ on:
 
 jobs:
   # This workflow contains a single job called "create"
-  create-workspace:
+  deploy-dev:
     name: Deploy dev
 
     runs-on: ubuntu-latest
