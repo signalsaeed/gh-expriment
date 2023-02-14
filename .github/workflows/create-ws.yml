@@ -1,38 +1,21 @@
-name: create workspace
+name: deploy dev
 
 on:
-  workflow_dispatch:
-    inputs:
-      name:
-        description: "name of the ws to create"
-        required: true
   workflow_call:
-    inputs:
-      name:
-        description: "name of the workspace"
-        required: true
-        type: string
-
-concurrency: create-workspace-${{ github.event.inputs.name }}
 
 jobs:
   # This workflow contains a single job called "create"
   create-workspace:
-    name: Create Workspace
+    name: Deploy dev
 
     runs-on: ubuntu-latest
 
     steps:
-      - name: Output github input name
-        run: echo "${{ github.event.inputs.name}}"
+      - name: Output test dev
+        run: echo "test dev"
 
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
-
-      - name: create workspace
+      - name: deploy dev
         run: |
-          echo "creating workspace"
+          echo "deploying dev"
           sleep 30s
-          echo "Finish creation"
+          echo "Finish deploy"

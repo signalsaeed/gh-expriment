@@ -1,38 +1,21 @@
-name: destroy workspace
+name: deploy beta
 
 on:
-  workflow_dispatch:
-    inputs:
-      name:
-        description: "name of ws to destroy"
-        required: true
   workflow_call:
-    inputs:
-      name:
-        description: "name of the workspace"
-        required: true
-        type: string
-
-concurrency: destroy-workspace-${{ github.event.inputs.name }}
 
 jobs:
-  # This workflow contains a single job called "destroy"
-  destroy-workspace:
-    name: Destroy Workspace
+  # This workflow contains a single job called "create"
+  create-workspace:
+    name: Deploy beta
 
     runs-on: ubuntu-latest
 
     steps:
-      - name: Output github input name
-        run: echo "${{ github.event.inputs.name}}"
+      - name: Output test beta
+        run: echo "test beta"
 
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
-
-      - name: Destroy workspace
+      - name: deploy beta
         run: |
-          echo "destroying workspace"
+          echo "deploying beta"
           sleep 30s
-          echo "Finish Destroy"
+          echo "Finish deploy"
