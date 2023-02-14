@@ -1,0 +1,21 @@
+name: deploy dev
+
+on:
+  workflow_call:
+
+jobs:
+  # This workflow contains a single job called "create"
+  deploy-dev:
+    name: Deploy dev
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Output test dev
+        run: echo "test dev"
+
+      - name: deploy dev
+        run: |
+          echo "deploying dev"
+          sleep 30s
+          echo "Finish deploy"

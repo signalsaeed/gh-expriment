@@ -1,0 +1,23 @@
+name: deploy-pipeline
+
+on:
+  pull_request:
+    types: [ closed ]
+    branches:
+      - 'dev'
+      - 'beta'
+
+
+jobs:
+
+  run-dev-deploy:
+        if: |
+          (github.event.pull_request.merged == true) &&
+          (github.event.pull_request.base.ref == 'dev')
+        uses: ./.github/workflows/deploy-dev.yml
+  
+  run-beta-deploy:
+        if: |
+          (github.event.pull_request.merged == true) &&
+          (github.event.pull_request.base.ref == 'beta')
+        uses: ./.github/workflows/deploy-beta.yml
