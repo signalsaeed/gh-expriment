@@ -16,11 +16,11 @@ jobs:
       - name: dev environment deployment
         if: |
           (github.event.pull_request.merged == true) &&
-          (github.event.pull_request.base.ref != 'dev')
+          (github.event.pull_request.base.ref == 'dev')
         uses: ./.github/workflows/deploy-dev.yml
 
       - name: beta environemt deployment
         if: |
           (github.event.pull_request.merged == true) &&
-          (github.event.pull_request.base.ref != 'beta')
+          (github.event.pull_request.base.ref == 'beta')
         uses: ./.github/workflows/deploy-beta.yml
