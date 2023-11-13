@@ -15,6 +15,7 @@ jobs:
     name: Deploy dev
     outputs:
       TAG_TO_CHECK_OUT: ${{ steps.version.outputs.VERSION }}
+      BETA_VERSION: ${{ steps.echo-version.outputs.BETA_VERSION }}
 
     runs-on: ubuntu-latest
 
