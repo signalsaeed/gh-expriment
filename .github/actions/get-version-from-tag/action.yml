@@ -18,4 +18,5 @@ runs:
       id: version
       shell: bash
       run: |
-        git tag --points-at HEAD --sort=-version:refname "dev-*" | sed -n 1p | sed -e 's/^/VERSION=/' >> $GITHUB_OUTPUT
+        export VERSION=$(git tag --points-at HEAD --sort=-version:refname "dev-*" | sed -n 1p)
+        echo "VERSION=${VERSION}" >> $GITHUB_ENV
