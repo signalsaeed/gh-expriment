@@ -19,4 +19,4 @@ runs:
       shell: bash
       run: |
         export VERSION=$(git tag | sed -n 1p)
-        echo "VERSION=${VERSION}" >> $GITHUB_ENV
+        echo "VERSION=${VERSION}" >> $GITHUB_OUTPUT
