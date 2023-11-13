@@ -38,9 +38,13 @@ jobs:
       - name: Echo beta
         run: |
           echo "${{ steps.echo-version.outputs.BETA_VERSION}}"
+  build:
+    name: Build artifact
+    needs: 
+      - deploy-dev
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: refs/tags/${{ needs.deploy-dev.outputs.TAG_TO_CHECK_OUT }}
 
-      - name: deploy dev
-        run: |
-          echo "deploying dev"
-          sleep 15s
-          echo "Finish deploy"
