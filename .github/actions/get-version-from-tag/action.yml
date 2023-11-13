@@ -1,0 +1,21 @@
+name: 'Fetch version tag on HEAD'
+description: 'Fetch version tag on HEAD'
+
+outputs:
+  VERSION:
+    description: "Version on HEAD"
+    value: ${{ steps.version.outputs.VERSION }}
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v2
+    - name: Fetch tags
+      shell: bash
+      run: |
+        git fetch --tags
+    - name: Find version tag
+      id: version
+      shell: bash
+      run: |
+        git tag --points-at HEAD --sort=-version:refname "dev-*" | sed -n 1p | sed -e 's/^/VERSION=/' >> $GITHUB_OUTPUT

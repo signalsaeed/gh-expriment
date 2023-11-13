@@ -3,19 +3,35 @@ name: deploy dev
 on:
   workflow_call:
 
+defaults:
+  run:
+    shell: bash
+
+    
+    
 jobs:
   # This workflow contains a single job called "create"
   deploy-dev:
     name: Deploy dev
+    outputs:
+      TAG_TO_CHECK_OUT: ${{ steps.version.outputs.VERSION }}
 
     runs-on: ubuntu-latest
 
     steps:
-      - name: Output test dev
-        run: echo "test dev"
+      - uses: actions/checkout@v2
+      - name: Find latest dev version
+        id: version
+        uses: ./.github/actions/get-version-from-tag/
+        
+
+      - name: Create beta version
+        id: beta-version
+        shell: bash
+        run: echo "${{ steps.version.outputs.VERSION }}"
 
       - name: deploy dev
         run: |
           echo "deploying dev"
-          sleep 30s
+          sleep 15s
           echo "Finish deploy"
