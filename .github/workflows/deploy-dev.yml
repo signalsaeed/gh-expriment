@@ -30,6 +30,15 @@ jobs:
         shell: bash
         run: echo "${{ steps.version.outputs.VERSION }}"
 
+      - name: Echo to Output
+        id: echo-version
+        run: |
+         echo "BETA_VERSION=$(echo "${{ steps.version.outputs.VERSION }}" | sed 's/dev/BETA/g')" >> $GITHUB_OUTPUT      
+
+      - name: Echo beta
+        run: |
+          echo "${{ steps.echo-version.outputs.BETA_VERSION}}"
+
       - name: deploy dev
         run: |
           echo "deploying dev"
