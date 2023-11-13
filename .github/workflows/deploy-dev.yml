@@ -47,5 +47,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: refs/tags/${{ needs.deploy-dev.outputs.TAG_TO_CHECK_OUT }}
+          ref: refs/tags/${{ needs.deploy-dev.outputs.BETA_VERSION }}
 
