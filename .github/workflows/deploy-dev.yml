@@ -34,7 +34,7 @@ jobs:
       - name: Echo to Output
         id: echo-version
         run: |
-         echo "BETA_VERSION=$(echo "${{ steps.version.outputs.VERSION }}" | sed 's/dev/BETA/g')" >> $GITHUB_OUTPUT      
+         echo "BETA_VERSION=$(echo "${{ steps.version.outputs.VERSION }}" | sed 's/dev/beta/g')" >> $GITHUB_OUTPUT      
 
       - name: Echo beta
         run: |
